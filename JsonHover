@@ -1,37 +1,58 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
   "elmType": "div",
-  "attributes": {
-    "onmouseover": {
-      "elmType": "img",
-      "attributes": {
-        "src": "https://your-onedrive-url-to-image.png",  // Sustituye esta URL con la URL de tu imagen en OneDrive
-        "style": {
-          "position": "absolute",
-          "z-index": "1000",
-          "border": "1px solid black",
-          "background": "white",
-          "padding": "5px",
-          "box-shadow": "3px 3px 3px rgba(0,0,0,0.3)",
-          "width": "200px",  // Ajusta el tamaño según tus necesidades
-          "height": "auto"
-        }
-      }
-    },
-    "onmouseout": {
-      "elmType": "img",
-      "attributes": {
-        "src": "",
-        "style": {
-          "display": "none"
-        }
-      }
-    }
+  "style": {
+    "position": "relative",
+    "display": "inline-block"
   },
   "children": [
     {
       "elmType": "span",
-      "txtContent": "[$Status General]"
+      "txtContent": "[$StatusGeneral]",
+      "style": {
+        "padding": "5px",
+        "cursor": "pointer"
+      }
+    },
+    {
+      "elmType": "div",
+      "style": {
+        "visibility": "hidden",
+        "position": "absolute",
+        "top": "100%",
+        "left": "50%",
+        "transform": "translateX(-50%)",
+        "border": "1px solid black",
+        "background": "white",
+        "padding": "5px",
+        "box-shadow": "3px 3px 3px rgba(0,0,0,0.3)",
+        "z-index": "1000"
+      },
+      "attributes": {
+        "class": "hover-image"
+      },
+      "children": [
+        {
+          "elmType": "img",
+          "attributes": {
+            "src": "https://your-onedrive-url-to-image.png", // Sustituye esta URL con la URL de tu imagen en OneDrive
+            "style": {
+              "width": "200px", // Ajusta el tamaño según tus necesidades
+              "height": "auto"
+            }
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "customRowAction": {
+    "action": "setValue",
+    "actionParams": {
+      "elementStyle": {
+        ".hover-image": {
+          "visibility": "visible"
+        }
+      }
+    }
+  }
 }
