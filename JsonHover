@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "attributes": {
+    "onmouseover": {
+      "elmType": "img",
+      "attributes": {
+        "src": "https://your-onedrive-url-to-image.png",  // Sustituye esta URL con la URL de tu imagen en OneDrive
+        "style": {
+          "position": "absolute",
+          "z-index": "1000",
+          "border": "1px solid black",
+          "background": "white",
+          "padding": "5px",
+          "box-shadow": "3px 3px 3px rgba(0,0,0,0.3)",
+          "width": "200px",  // Ajusta el tamaño según tus necesidades
+          "height": "auto"
+        }
+      }
+    },
+    "onmouseout": {
+      "elmType": "img",
+      "attributes": {
+        "src": "",
+        "style": {
+          "display": "none"
+        }
+      }
+    }
+  },
+  "children": [
+    {
+      "elmType": "span",
+      "txtContent": "[$Status General]"
+    }
+  ]
+}
