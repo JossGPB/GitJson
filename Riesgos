@@ -1,0 +1,7 @@
+Conteo de Riesgos = 
+VAR ProyectoActual = Proyectos[ID_Proyecto]
+RETURN
+CALCULATE(
+    COUNT(Riesgos[ID_Riesgo]), 
+    Riesgos[ID_Proyecto] = ProyectoActual
+)
