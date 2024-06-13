@@ -1,8 +1,9 @@
-Valor Acumulado = 
+ValorEstimadoActualAcumulado = 
 CALCULATE(
-    SUM(Ventas[Valor]),
+    SUM(Estimaciones[Valor]),
     FILTER(
-        ALLSELECTED(Ventas[Mes]),
-        ISONORAFTER(Ventas[Mes], MAX(Ventas[Mes]), DESC)
-    )
+        ALLSELECTED(Estimaciones[Fecha]),
+        ISONORAFTER(Estimaciones[Fecha], MAX(Estimaciones[Fecha]), DESC)
+    ),
+    Estimaciones[TipoAprobado] = "Valor Estimado Actual"
 )
