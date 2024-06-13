@@ -1,7 +1,8 @@
-Conteo de Riesgos = 
-VAR ProyectoActual = Proyectos[ID_Proyecto]
-RETURN
+Valor Acumulado = 
 CALCULATE(
-    COUNT(Riesgos[ID_Riesgo]), 
-    Riesgos[ID_Proyecto] = ProyectoActual
+    SUM(Ventas[Valor]),
+    FILTER(
+        ALLSELECTED(Ventas[Mes]),
+        ISONORAFTER(Ventas[Mes], MAX(Ventas[Mes]), DESC)
+    )
 )
