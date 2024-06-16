@@ -1,50 +1,26 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
-  "elmType": "div",
-  "style": {
-    "position": "relative",
-    "display": "inline-block"
-  },
-  "children": [
-    {
-      "elmType": "span",
-      "txtContent": "[$NombreProyecto]",
-      "style": {
-        "padding": "5px",
-        "cursor": "pointer"
-      }
-    },
-    {
-      "elmType": "div",
-      "style": {
-        "visibility": "hidden",
-        "position": "absolute",
-        "top": "100%",
-        "left": "50%",
-        "transform": "translateX(-50%)",
-        "border": "1px solid black",
-        "background": "white",
-        "padding": "5px",
-        "box-shadow": "3px 3px 3px rgba(0,0,0,0.3)",
-        "z-index": "1000",
-        "width": "200px",
-        "height": "auto"
-      },
-      "attributes": {
-        "class": "hover-image"
-      },
-      "children": [
-        {
-          "elmType": "img",
-          "attributes": {
-            "src": "https://your-onedrive-url-to-image.png"  // Sustituye esta URL con la URL de tu imagen en OneDrive
-          },
-          "style": {
-            "width": "100%",
-            "height": "auto"
-          }
-        }
-      ]
-    }
-  ]
-}
+PorcentajeSalud = 
+VAR TotalCódigos = COUNTROWS(ALL(TablaSalud))
+VAR TotalVerdePresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Presupuesto")
+VAR TotalAmbarPresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Presupuesto")
+VAR TotalRojoPresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Presupuesto")
+VAR TotalVerdeAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Alcance")
+VAR TotalAmbarAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Alcance")
+VAR TotalRojoAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Alcance")
+VAR TotalVerdeCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Cronograma")
+VAR TotalAmbarCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Cronograma")
+VAR TotalRojoCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Cronograma")
+
+RETURN
+SWITCH(
+    TRUE(),
+    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalVerdePresupuesto, TotalCódigos, 0),
+    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalAmbarPresupuesto, TotalCódigos, 0),
+    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalRojoPresupuesto, TotalCódigos, 0),
+    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalVerdeAlcance, TotalCódigos, 0),
+    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalAmbarAlcance, TotalCódigos, 0),
+    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalRojoAlcance, TotalCódigos, 0),
+    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalVerdeCronograma, TotalCódigos, 0),
+    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalAmbarCronograma, TotalCódigos, 0),
+    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalRojoCronograma, TotalCódigos, 0),
+    0
+)
