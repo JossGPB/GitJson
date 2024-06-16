@@ -1,26 +1,15 @@
 PorcentajeSalud = 
-VAR TotalCódigos = COUNTROWS(ALL(TablaSalud))
-VAR TotalVerdePresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Presupuesto")
-VAR TotalAmbarPresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Presupuesto")
-VAR TotalRojoPresupuesto = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Presupuesto")
-VAR TotalVerdeAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Alcance")
-VAR TotalAmbarAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Alcance")
-VAR TotalRojoAlcance = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Alcance")
-VAR TotalVerdeCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Verde", TablaSalud[Salud] = "Cronograma")
-VAR TotalAmbarCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Ámbar", TablaSalud[Salud] = "Cronograma")
-VAR TotalRojoCronograma = CALCULATE(COUNTROWS(TablaSalud), TablaSalud[Valor] = "Rojo", TablaSalud[Salud] = "Cronograma")
+VAR TotalCódigos = COUNTROWS(ALLSELECTED('Avances - Salud'))
+VAR TotalVerde = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Verde", ALLSELECTED('Avances - Salud'[Código]))
+VAR TotalAmbar = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Ámbar", ALLSELECTED('Avances - Salud'[Código]))
+VAR TotalRojo = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Rojo", ALLSELECTED('Avances - Salud'[Código]))
+VAR CurrentValue = SELECTEDVALUE('Avances - Salud'[Valor])
 
 RETURN
 SWITCH(
     TRUE(),
-    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalVerdePresupuesto, TotalCódigos, 0),
-    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalAmbarPresupuesto, TotalCódigos, 0),
-    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Presupuesto", DIVIDE(TotalRojoPresupuesto, TotalCódigos, 0),
-    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalVerdeAlcance, TotalCódigos, 0),
-    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalAmbarAlcance, TotalCódigos, 0),
-    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Alcance", DIVIDE(TotalRojoAlcance, TotalCódigos, 0),
-    TablaSalud[Valor] = "Verde" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalVerdeCronograma, TotalCódigos, 0),
-    TablaSalud[Valor] = "Ámbar" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalAmbarCronograma, TotalCódigos, 0),
-    TablaSalud[Valor] = "Rojo" && TablaSalud[Salud] = "Cronograma", DIVIDE(TotalRojoCronograma, TotalCódigos, 0),
+    CurrentValue = "Verde", DIVIDE(TotalVerde, TotalCódigos, 0),
+    CurrentValue = "Ámbar", DIVIDE(TotalAmbar, TotalCódigos, 0),
+    CurrentValue = "Rojo", DIVIDE(TotalRojo, TotalCódigos, 0),
     0
 )
