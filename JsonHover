@@ -1,15 +1,1 @@
-PorcentajeSalud = 
-VAR TotalCódigos = COUNTROWS(ALLSELECTED('Avances - Salud'))
-VAR TotalVerde = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Verde", ALLSELECTED('Avances - Salud'[Código]))
-VAR TotalAmbar = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Ámbar", ALLSELECTED('Avances - Salud'[Código]))
-VAR TotalRojo = CALCULATE(COUNTROWS('Avances - Salud'), 'Avances - Salud'[Valor] = "Rojo", ALLSELECTED('Avances - Salud'[Código]))
-VAR CurrentValue = SELECTEDVALUE('Avances - Salud'[Valor])
-
-RETURN
-SWITCH(
-    TRUE(),
-    CurrentValue = "Verde", DIVIDE(TotalVerde, TotalCódigos, 0),
-    CurrentValue = "Ámbar", DIVIDE(TotalAmbar, TotalCódigos, 0),
-    CurrentValue = "Rojo", DIVIDE(TotalRojo, TotalCódigos, 0),
-    0
-)
+http://sharepoint/sites/RRHH/Aprendizaje-Comunicaciones/USBP/InduccionCorporativaSBP/Forms/AllItems.aspx?InitialTabId=Ribbon.Document&VisibilityContext=WSSTabPersistence&View=%7Bacf7704f-c562-4503-b9e2-aa7709fb053a%7D&SortField=DocIcon&SortDir=Desc
