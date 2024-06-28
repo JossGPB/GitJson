@@ -1,1 +1,2 @@
 http://sharepoint/sites/RRHH/Aprendizaje-Comunicaciones/USBP/InduccionCorporativaSBP/Forms/AllItems.aspx?InitialTabId=Ribbon.Document&VisibilityContext=WSSTabPersistence&View=%7Bacf7704f-c562-4503-b9e2-aa7709fb053a%7D&SortField=DocIcon&SortDir=Desc
+https://teams.microsoft.com/l/meetup-join/19%3ameeting_NDRmYjQ3YTctZjQyNy00N2RhLWEyODQtNTMzMTY5MjRhNjU3%40thread.v2/0?context=%7b%22Tid%22%3a%228ff33436-4701-4dad-b7d3-3462e99c6889%22%2c%22Oid%22%3a%22b464465b-42fd-4e25-9701-6043f63441af%22%7d
